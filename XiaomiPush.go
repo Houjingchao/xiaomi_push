@@ -1,4 +1,4 @@
-package main
+package xiaomi_push
 
 import (
 	"github.com/cocotyty/httpclient"
