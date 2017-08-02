@@ -9,16 +9,16 @@ import (
 )
 
 type XiaomiPush struct {
-	appSecret   string
-	packageNmae []string
-	host        string
+	AppSecret   string
+	PackageNmae []string
+	Host        string
 }
 
 func NewXiaomiPush(appSecret string, packageName []string, host string) *XiaomiPush {
 	return &XiaomiPush{
-		appSecret:   appSecret,
-		packageNmae: packageName,
-		host:        host,
+		AppSecret:   appSecret,
+		PackageNmae: packageName,
+		Host:        host,
 	}
 }
 func buildRequest(meq *model.Message, request *httpclient.HttpRequest) *httpclient.HttpRequest {
