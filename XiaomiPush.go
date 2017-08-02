@@ -43,7 +43,7 @@ func buildRequest(meq *model.Message, request *httpclient.HttpRequest) *httpclie
 func (xm *XiaomiPush) SendRegids(meq *model.Message, regisIds string) (response string, err error) {
 	request := httpclient.
 	Post(consts.Host + consts.RegURL).
-		Head("Authorization", "key="+xm.appSecret).
+		Head("Authorization", "key="+xm.AppSecret).
 		Param("registration_id", regisIds) //,号分开
 	request = buildRequest(meq, request)
 	result, err := request.Send().
@@ -57,7 +57,7 @@ func (xm *XiaomiPush) SendRegids(meq *model.Message, regisIds string) (response 
 func (xm *XiaomiPush) SendAlias(meq *model.Message, alias string) (response string, err error) {
 	request := httpclient.
 	Post(consts.Host + consts.AliasURL).
-		Head("Authorization", "key="+xm.appSecret).
+		Head("Authorization", "key="+xm.AppSecret).
 		Param("alias", alias) //,号分开
 	request = buildRequest(meq, request)
 	result, err := request.Send().
@@ -71,7 +71,7 @@ func (xm *XiaomiPush) SendAlias(meq *model.Message, alias string) (response stri
 func (xm *XiaomiPush) SendAccounts(meq *model.Message, user_account string) (response string, err error) {
 	request := httpclient.
 	Post(consts.Host + consts.Account).
-		Head("Authorization", "key="+xm.appSecret).
+		Head("Authorization", "key="+xm.AppSecret).
 		Param("user_account", user_account) //,号分开
 	request = buildRequest(meq, request)
 	result, err := request.Send().
@@ -82,12 +82,12 @@ func (xm *XiaomiPush) SendAccounts(meq *model.Message, user_account string) (res
 	return result, nil
 }
 func (xm *XiaomiPush) SendTopic(meq *model.Message, topic string) (response string, err error) {
-	fmt.Println(xm.packageNmae[0])
+	fmt.Println(xm.PackageName[0])
 	request := httpclient.
 	Post(consts.Host + consts.TopicURL).
-		Head("Authorization", "key="+xm.appSecret).
+		Head("Authorization", "key="+xm.AppSecret).
 		Param("topic", topic). //,号分开
-		Param("restricted_package_name", xm.packageNmae[0]) //,号分开
+		Param("restricted_package_name", xm.PackageName[0]) //,号分开
 	request = buildRequest(meq, request)
 	result, err := request.Send().
 		String()
@@ -101,7 +101,7 @@ func (xm *XiaomiPush) SendTopics(meq *model.Message, topics string, topicop stri
 
 	request := httpclient.
 	Post(consts.Host + consts.TopicMultiURL).
-		Head("Authorization", "key="+xm.appSecret).
+		Head("Authorization", "key="+xm.AppSecret).
 		Param("topics", topics). //;$;分割  不可以超过5
 		Param("topic_op", meq.TopicOp)
 	request = buildRequest(meq, request)
@@ -117,7 +117,7 @@ func (xm *XiaomiPush) SendAll(meq *model.Message) (response string, err error) {
 
 	request := httpclient.
 	Post(consts.Host + consts.All).
-		Head("Authorization", "key="+xm.appSecret)
+		Head("Authorization", "key="+xm.AppSecret)
 	request = buildRequest(meq, request)
 	result, err := request.Send().
 		String()
@@ -132,10 +132,10 @@ func (xm *XiaomiPush) GetCounters(startDate string, endDate string) (response st
 
 	request := httpclient.
 	Get(consts.Host + consts.CounterURL).
-		Head("Authorization", "key="+xm.appSecret).
+		Head("Authorization", "key="+xm.AppSecret).
 		Query("start_date", startDate).
 		Query("end_date", endDate).
-		Query("restricted_package_name", xm.packageNmae[0])
+		Query("restricted_package_name", xm.PackageName[0])
 	result, err := request.Send().
 		String()
 	if err != nil {
@@ -151,10 +151,10 @@ func (xm *XiaomiPush) GetCounters(startDate string, endDate string) (response st
 func (xm *XiaomiPush) TopicRegIdSubscrib(topic, registration_id string) (response string, err error) {
 	request := httpclient.
 	Post(consts.Host + consts.TopicRegIdSubscribURL).
-		Head("Authorization", "key="+xm.appSecret).
+		Head("Authorization", "key="+xm.AppSecret).
 		Param("registration_id", registration_id).
 		Param("topic", topic).
-		Param("restricted_package_name", xm.packageNmae[0])
+		Param("restricted_package_name", xm.PackageName[0])
 	result, err := request.Send().
 		String()
 	if err != nil {
@@ -167,10 +167,10 @@ func (xm *XiaomiPush) TopicRegIdSubscrib(topic, registration_id string) (respons
 func (xm *XiaomiPush) TopicRegIdUnsubscirbe(topic, registration_id string) (response string, err error) {
 	request := httpclient.
 	Post(consts.Host + consts.TopicRegIdUnsubscirbeURL).
-		Head("Authorization", "key="+xm.appSecret).
+		Head("Authorization", "key="+xm.AppSecret).
 		Param("registration_id", registration_id).
 		Param("topic", topic).
-		Param("restricted_package_name", xm.packageNmae[0])
+		Param("restricted_package_name", xm.PackageName[0])
 	result, err := request.Send().
 		String()
 	if err != nil {
@@ -187,10 +187,10 @@ func (xm *XiaomiPush) TopicRegIdUnsubscirbe(topic, registration_id string) (resp
 func (xm *XiaomiPush) TopicAliasSubscribe(topic, aliases string) (response string, err error) {
 	request := httpclient.
 	Post(consts.Host + consts.TopicAliasSubscribeURL).
-		Head("Authorization", "key="+xm.appSecret).
+		Head("Authorization", "key="+xm.AppSecret).
 		Param("aliases", aliases).
 		Param("topic", topic).
-		Param("restricted_package_name", xm.packageNmae[0])
+		Param("restricted_package_name", xm.PackageName[0])
 	result, err := request.Send().
 		String()
 	if err != nil {
@@ -202,10 +202,10 @@ func (xm *XiaomiPush) TopicAliasSubscribe(topic, aliases string) (response strin
 func (xm *XiaomiPush) TopicAliasUnsubscirbe(topic, aliases string) (response string, err error) {
 	request := httpclient.
 	Post(consts.Host + consts.TopicAliasUnsubscirbeURL).
-		Head("Authorization", "key="+xm.appSecret).
+		Head("Authorization", "key="+xm.AppSecret).
 		Param("aliases", aliases).
 		Param("topic", topic).
-		Param("restricted_package_name", xm.packageNmae[0])
+		Param("restricted_package_name", xm.PackageName[0])
 	result, err := request.Send().
 		String()
 	if err != nil {
@@ -219,8 +219,8 @@ func (xm *XiaomiPush) TopicAllByRegid(regid string) (response string, err error)
 	fmt.Println(regid)
 	request := httpclient.
 	Get(consts.Host + consts.TopicAllByRegidURL).
-		Head("Authorization", "key="+xm.appSecret).
-		Query("restricted_package_name", xm.packageNmae[0]).
+		Head("Authorization", "key="+xm.AppSecret).
+		Query("restricted_package_name", xm.PackageName[0]).
 		Query("registration_id", regid)
 
 	result, err := request.Send().
