@@ -2,10 +2,10 @@ package xiaomi_push
 
 import (
 	"github.com/cocotyty/httpclient"
-	"code.aliyun.com/app-channel-adapter/api/xiaomi_push/model"
-	"code.aliyun.com/app-channel-adapter/api/xiaomi_push/consts"
 	"strconv"
 	"fmt"
+	"github.com/Houjingchao/xiaomi_push/model"
+	"github.com/Houjingchao/xiaomi_push/consts"
 )
 
 type XiaomiPush struct {
