@@ -4,7 +4,7 @@ import (
 	"time"
 	"strings"
 	"encoding/json"
-	"code.aliyun.com/app-channel-adapter/api/xiaomi_push/consts"
+	"github.com/Houjingchao/xiaomi_push/consts"
 )
 
 // Create by LittleM 17/07/20
