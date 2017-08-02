@@ -10,14 +10,14 @@ import (
 
 type XiaomiPush struct {
 	AppSecret   string
-	PackageNmae []string
+	PackageName []string
 	Host        string
 }
 
 func NewXiaomiPush(appSecret string, packageName []string, host string) *XiaomiPush {
 	return &XiaomiPush{
 		AppSecret:   appSecret,
-		PackageNmae: packageName,
+		PackageName: packageName,
 		Host:        host,
 	}
 }
