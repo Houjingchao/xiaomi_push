@@ -3,9 +3,9 @@ package xiaomi_push
 import (
 	"github.com/cocotyty/httpclient"
 	"strconv"
-	"fmt"
 	"github.com/Houjingchao/xiaomi_push/model"
 	"github.com/Houjingchao/xiaomi_push/consts"
+	"fmt"
 )
 
 type XiaomiPush struct {
@@ -82,7 +82,6 @@ func (xm *XiaomiPush) SendAccounts(meq *model.Message, user_account string) (res
 	return result, nil
 }
 func (xm *XiaomiPush) SendTopic(meq *model.Message, topic string) (response string, err error) {
-	fmt.Println(xm.PackageName[0])
 	request := httpclient.
 	Post(consts.Host + consts.TopicURL).
 		Head("Authorization", "key="+xm.AppSecret).
@@ -92,7 +91,6 @@ func (xm *XiaomiPush) SendTopic(meq *model.Message, topic string) (response stri
 	result, err := request.Send().
 		String()
 	if err != nil {
-		fmt.Println(err)
 		return "", err
 	}
 	return result, nil
@@ -230,4 +228,3 @@ func (xm *XiaomiPush) TopicAllByRegid(regid string) (response string, err error)
 	}
 	return result, nil
 }
-
