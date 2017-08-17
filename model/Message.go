@@ -102,17 +102,17 @@ func (m *Message) SetCallback(callBackUrl string) *Message {
 	return m
 }
 
-func NewAndroidMessage(payload, title, description string) *Message {
+func NewAndroidMessage(payload, title, description string,extra map[string]string) *Message {
 	return &Message{
-		Payload:     payload,
-		Title:       title,
+		Payload:     payload,//消息的内容
+		Title:      title,
 		Description: description,
 		PassThrough: 0, // 1表示透传消息，0表示通知栏消息。
 		NotifyType:  1, // 使用默认提示音提示
 		TimeToLive:  0,
 		TimeToSend:  0,
 		NotifyID:    time.Now().Unix(), //可选项。默认情况下，通知栏只显示一条推送消息。如果通知栏要显示多条推送消息，需要针对不同的消息设置不同的notify_id（相同notify_id的通知栏消息会覆盖之前的）。
-		Extra:       make(map[string]string),
+		Extra:       extra,
 		TopicOp:     consts.TOPIC_OP_UNION,
 	}
 }
